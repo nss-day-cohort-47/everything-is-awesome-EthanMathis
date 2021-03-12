@@ -4,6 +4,7 @@ import { makeLegoList } from './legos/LegoList.js';
 
 const navElement = document.querySelector("nav");
 const dropdown = document.getElementById("dropdown");
+const searchbar = document.getElementById("legoSearch")
 
 navElement.addEventListener("click", (event) => {
 	if (event.target.id === "showRed") {
@@ -21,6 +22,14 @@ dropdown.addEventListener("change", (event) => {
 		materialFilter(material)
 	}
 })
+
+navElement.addEventListener("click", (event) => {
+	if (event.target.id === "search") {
+		const search = document.querySelector("input[name='postSearch']").value
+		searchFilter(search)
+	} 
+})
+
 
 const materialFilter = (material) => {
 	const matArray = useLegos().filter(singleLego => {
@@ -40,6 +49,19 @@ const filterLegos = (whatFilter) => {
 	makeLegoList(filterArray);
 }
 
+const searchFilter = (searchedId) => {
+	const searchArray = useLegos().filter(singleLego => {
+		if (singleLego.LegoId === searchedId) {
+			return singleLego;
+		} 
+	})
+	makeLegoList(searchArray);
+
+	if (searchArray.length === 0) {
+		document.querySelector("input[name='postSearch']").value = `ID ${searchedId} not found`
+		makeLegoList(useLegos());
+	}
+}
 
 const startEIA = () => {
 	loadLegos()
