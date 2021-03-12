@@ -24,3 +24,7 @@ export const invertColor = (hex) => {
 	var zeros = new Array(len).join('0');
 	return (zeros + str).slice(-len);
   }
+// function that accepts a string as an argument and returns that string in all upper case
+  export const makesUpperCase = (nameString) => {
+	return nameString.toUpperCase();
+  }

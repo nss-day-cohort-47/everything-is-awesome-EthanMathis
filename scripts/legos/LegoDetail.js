@@ -1,9 +1,9 @@
-import { invertColor } from './../helpers.js';
+import { invertColor, makesUpperCase } from './../helpers.js';
 
 export const LegoDetail = (brick) => {
-
+  let blockName = makesUpperCase(brick.LegoName)
   let block = `<section class="block-wrapper" style="background-color:#${brick.ColorHex}">
-              <h3>Name: ${brick.LegoName.toUpperCase()}</h3>
+              <h3>Name: ${blockName}</h3>
               <div class="block-years">Manufactured ${brick.YearFrom} - ${brick.YearTo}</div>
               <div class="notes">${brick.Notes}</div>
               </section>
